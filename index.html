@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>GnuPlot</title>
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			text-align: center;
+		}
+		
+		textarea {
+			margin-top: 1em;
+			width: 15cm;
+			height: 15em;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="GnuPlot.css" />
+	<script src="lib/jquery-1.10.2.js" type="application/javascript"></script>
+	<script src="lib/gnuplot_api.js" type="application/javascript"></script>
+	<script src="GnuPlot.js" type="application/javascript"></script>
+	<script>
+		var plotter;
+		
+		$(document).ready(function() {
+			
+			var __donef = function() {
+				console.log('Initialized.');
+			};
+			
+			plotter = new GnuPlot(
+				$('.placeholder'),
+				{
+					program: '',
+					debug: true
+				},
+				{},
+				__donef
+			);
+		});
+		
+		var runCode = function() {
+			var __donef = function() {
+				console.log('Complete.');
+			};
+			
+			plotter.config.program = $('textarea').val();
+			plotter.draw(__donef);
+		}
+	</script>
+</head>
+<body>
+	<textarea></textarea><br/>
+	<input type="button" onclick="runCode()" value="Run" /><p/>
+	<div class="placeholder"></div>
+</body>
+</html>
